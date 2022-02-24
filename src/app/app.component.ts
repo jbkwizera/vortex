@@ -24,8 +24,8 @@ export class AppComponent implements OnInit {
     let borderColor = checkbox.checked ? this.color : '#ced4da';
     checkbox.style.borderColor = borderColor;
     checkbox.style.backgroundColor = bgColor;
-    this.showLabels = checkbox.id == 'switch-labels' && checkbox.checked;
-    this.showPoints = checkbox.id == 'switch-labels' && checkbox.checked;
+    if (checkbox.id == 'switch-labels') this.showLabels = checkbox.checked;
+    if (checkbox.id == 'switch-points') this.showPoints = checkbox.checked;
   }
 
   adjustUI() {
@@ -177,17 +177,13 @@ export class AppComponent implements OnInit {
      * The finiteness of the loop relies on the idea explained in
      * detected_cycle comment (see above).
      **/
-    let remainders: number[] = [];
     let roots: number[] = [];
     for (let exp = 1; ; exp++) {
-      // const result = detected_cycle(remainders);
       let result = this.detectedCycle(roots);
       if (result.length != 0) break;
       roots.push(this.expMod(this.multiplier, exp, this.modulus));
-      // roots.push(exp_digit_root(multiplier, exp, modulus));
+      // roots.push(expDigitRoot(this.multiplier, exp, this.modulus));
     }
-    console.log('remainders', remainders);
-    console.log('roots', roots);
 
     let circle = new fabric.Circle({
       top: 50,
@@ -206,7 +202,6 @@ export class AppComponent implements OnInit {
       ),
       center
     );
-
     let setPoints = this.showPoints && this.modulus <= 200;
     let setLabels = this.showLabels && this.modulus <= 100;
     if (setPoints || setLabels) {
