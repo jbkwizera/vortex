@@ -63,6 +63,7 @@
 }
 input,
 label,
+span,
 button {
   font-family: "IBM Plex Sans";
   font-weight: 400;
@@ -75,4 +76,7 @@ h1 {
 button {
   background-color: "#5c37e1";
   border-color: "#5c37e1";
+}
+span {
+  font-weight: 700;
 }
