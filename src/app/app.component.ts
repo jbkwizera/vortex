@@ -38,7 +38,7 @@ export class AppComponent implements OnInit {
 
   /* Add point labels and/or their text */
   private addPoint(
-    canvas: fabric.Canvas,
+    canvas: fabric.StaticCanvas,
     point: fabric.Point | null = null,
     label: { text: string; coords: fabric.Point } | null = null,
     radius: number = 5,
@@ -168,7 +168,7 @@ export class AppComponent implements OnInit {
     let canvasSize: number =
       Math.min(window.innerWidth, window.innerHeight) - 200;
     let center: fabric.Point = new fabric.Point(canvasSize / 2, canvasSize / 2);
-    let canvas: fabric.Canvas = new fabric.Canvas('canvas', {
+    let canvas: fabric.StaticCanvas = new fabric.StaticCanvas('canvas', {
       height: canvasSize,
       width: canvasSize,
     });
